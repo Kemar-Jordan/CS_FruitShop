@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+    <title>Shop Page</title>
+</head>
+<body>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <div class="centered-text">
+        <h1>See Our List of Items</h1>
+        <form action="{{ url_for('end') }}" method="post">
+        <table>
+            <thead>
+                <tr>
+                    <th>Fruit</th>
+                    <th>Price per Unit</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for fruit, price in fruits %}
+                <tr>
+                    <td>{{ fruit }}</td>
+                    <td>${{ '%0.2f' % price }}</td>
+                    <td>
+                        <input type="number" name="{{ fruit }}" min="0" value="0" style="width: 50px;">
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button type="submit">Calculate Total Price</button>
+    </form>       
+    </div>
+</body>
+</html>
